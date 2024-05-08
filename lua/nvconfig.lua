@@ -1,5 +1,3 @@
--- hi LineNr guibg=#000000 guifg=#ffffff
-
 local M = {}
 
 local highlights = require "highlights"
