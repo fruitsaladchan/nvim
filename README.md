@@ -4,10 +4,10 @@ fork of nvchad with my customizations and some other plugins
 
 using 
 
-nvim notify
-nvim-cmp
-codeium-nvim
-noice nvim
+*nvim notify
+*nvim-cmp
+*codeium-nvim
+*noice nvim
 
 
 ![screenshot-20240508-1226](https://github.com/fruitsaladchan/nvim/assets/124645742/91c97ae9-a58a-4724-afad-7a9a8225a186)
