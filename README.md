@@ -38,6 +38,7 @@ My Neovim configuration mostly for rust, python, go and c.
 - `<leader>tt` → Open terminal
 - `<C-n>` → Open neo-tree
 - `<leader>mp` → Markdown preview
+- `<leader>gg` → Open lazygit
 
 ### Window Management
 - `<leader>-` → Split window horizontally
@@ -49,7 +50,7 @@ My Neovim configuration mostly for rust, python, go and c.
 - `[d/]d` → Previous/next diagnostic
 - `[e/]e` → Previous/next error
 - `[w/]w` → Previous/next warning
-- `<leader>cf` → Format code
+- `<leader>cf` → Format code (Code will also formart on save aswell)
 - `<C-a>` → Open aerial
 
 ### UI Toggles
