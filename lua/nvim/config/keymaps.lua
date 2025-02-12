@@ -98,6 +98,11 @@ end, { desc = "terminal" })
 
 vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 
+--terminal with lzygit
+keymap("n", "<leader>gg", function()
+	Mo.U.terminal({ "lazygit" })
+end, { desc = "lazygit" })
+
 -- Code format
 keymap("n", "<leader>of", function()
 	Mo.U.format.toggle()
