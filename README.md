@@ -50,6 +50,7 @@ My Neovim configuration mostly for rust, python, go and c.
 - `[e/]e` → Previous/next error
 - `[w/]w` → Previous/next warning
 - `<leader>cf` → Format code
+- `<C-a>` → Open aerial
 
 ### UI Toggles
 - `<leader>oh` → Toggle inlay hints
