@@ -76,5 +76,5 @@ My Neovim configuration mostly for rust, python, go and c.
 
 ### screenshots
 ![editing](./assets/editing.png) 
-
 ![dash](./assets/dashboard.png) 
+![lazy](./assets/lazy.png) 
