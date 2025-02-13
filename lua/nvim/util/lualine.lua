@@ -127,9 +127,9 @@ M.components = {
 			return ""
 		end,
 		-- icon = function()
-		--   local devicons = require("nvim-web-devicons")
-		--   local icon, color = devicons.get_icon_color_by_filetype("python")
-		--   return { icon, color = { fg = color } }
+		-- 	local devicons = require("nvim-web-devicons")
+		-- 	local icon, color = devicons.get_icon_color_by_filetype("python")
+		-- 	return { icon, color = { fg = color } }
 		-- end,
 		icon = { "󰌠", color = { fg = "#ffbc03" } },
 		color = { fg = palette.lavender },
@@ -182,19 +182,6 @@ M.components = {
 			right = "",
 		},
 	},
-
-	-- scrollbar = {
-	--   function()
-	--     local current_line = fn.line(".")
-	--     local total_lines = fn.line("$")
-	--     local chars =
-	--       { "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", "  " }
-	--     local line_ratio = current_line / total_lines
-	--     local index = math.ceil(line_ratio * #chars)
-	--     return chars[index]
-	--   end,
-	--   color = { fg = palette.surface0 },
-	-- },
 
 	spaces = {
 		function()

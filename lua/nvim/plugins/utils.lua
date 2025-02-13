@@ -57,7 +57,6 @@ local M = {
 				end
 
 				local end_text = ctx.get_fold_virt_text(end_lnum)
-				-- reformat the end text to trim excess whitespace
 				for _, chunk_text in pairs(end_text) do
 					chunk_text[1] = chunk_text[1]:gsub("[%s\t]+", "")
 				end

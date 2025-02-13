@@ -44,7 +44,7 @@ local M = {
 			return {
 				n_lines = 500,
 				custom_textobjects = {
-					o = ai.gen_spec.treesitter({ -- code block
+					o = ai.gen_spec.treesitter({
 						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
 						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
 					}),
@@ -70,24 +70,34 @@ local M = {
 		"folke/todo-comments.nvim",
 		cmd = { "TodoTrouble", "TodoTelescope" },
 		event = { "BufReadPost" },
-    -- stylua: ignore
-    keys = {
-      { "<leader>fT", "<Cmd>TodoTelescope<CR>", desc = "Find TODOs" },
-      { "[T", function() require("todo-comments").jump_prev() end, desc = "Prev TODO comment" },
-      { "]T", function() require("todo-comments").jump_next() end, desc = "Next TODO comment" },
-    },
+		keys = {
+			{ "<leader>fT", "<Cmd>TodoTelescope<CR>", desc = "Find TODOs" },
+			{
+				"[T",
+				function()
+					require("todo-comments").jump_prev()
+				end,
+				desc = "Prev TODO comment",
+			},
+			{
+				"]T",
+				function()
+					require("todo-comments").jump_next()
+				end,
+				desc = "Next TODO comment",
+			},
+		},
 		opts = function()
 			return {
-        -- stylua: ignore
-        keywords = {
-          TODO = { icon = " ", color = Mo.C.palette.green },
-          HACK = { icon = " ", color = Mo.C.palette.peach },
-          NOTE = { icon = " ", color = Mo.C.palette.blue, alt = { "INFO" } },
-          PERF = { icon = " ", color = Mo.C.palette.mauve, alt = { "OPTIM" } },
-          TEST = { icon = " ", color = Mo.C.palette.teal, alt = { "PASSED", "FAILED" } },
-          WARN = { icon = " ", color = Mo.C.palette.yellow, alt = { "WARNING", "XXX" } },
-          FIX  = { icon = " ", color = Mo.C.palette.red, alt = { "FIXME", "FIXIT", "ISSUE" } },
-        },
+				keywords = {
+					TODO = { icon = " ", color = Mo.C.palette.green },
+					HACK = { icon = " ", color = Mo.C.palette.peach },
+					NOTE = { icon = " ", color = Mo.C.palette.blue, alt = { "INFO" } },
+					PERF = { icon = " ", color = Mo.C.palette.mauve, alt = { "OPTIM" } },
+					TEST = { icon = " ", color = Mo.C.palette.teal, alt = { "PASSED", "FAILED" } },
+					WARN = { icon = " ", color = Mo.C.palette.yellow, alt = { "WARNING", "XXX" } },
+					FIX = { icon = " ", color = Mo.C.palette.red, alt = { "FIXME", "FIXIT", "ISSUE" } },
+				},
 				gui_style = { fg = "BOLD" },
 				highlight = {
 					before = "",
@@ -100,14 +110,26 @@ local M = {
 
 	{
 		"folke/flash.nvim",
-    -- stylua: ignore
-    keys = {
-      -- { "f", mode = { "n", "x", "o" } },
-      -- { "F", mode = { "n", "x", "o" } },
-      { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "F", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-
-    },
+		keys = {
+			-- { "f", mode = { "n", "x", "o" } },
+			-- { "F", mode = { "n", "x", "o" } },
+			{
+				"f",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			{
+				"F",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+		},
 		opts = {
 			jump = {
 				pos = "end",
@@ -116,12 +138,7 @@ local M = {
 				char = {
 					-- autohide = true,
 					jump_labels = function(motion)
-						-- never show jump labels by default
-						-- return false
-						-- Always show jump labels for ftFT
 						return vim.v.count == 0 and motion:find("[ftFT]")
-						-- Show jump labels for ftFT in operator-pending mode
-						-- return vim.v.count == 0 and motion:find("[ftFT]") and vim.fn.mode(true):find("o")
 					end,
 					jump = {
 						autojump = true,

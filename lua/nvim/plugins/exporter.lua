@@ -35,7 +35,7 @@ local M = {
 			},
 			close_if_last_window = true,
 			use_default_mappings = false,
-			popup_border_style = "rounded", -- no support "none"
+			popup_border_style = "rounded",
 			event_handlers = {
 				-- {
 				-- 	event = events.FILE_OPENED,

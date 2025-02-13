@@ -106,7 +106,6 @@ local M = {
 						Mo.U.lualine.components.diagnostics,
 					},
 					lualine_x = {
-						-- Mo.U.lualine.components.copilot,
 						Mo.U.lualine.components.python_env,
 						Mo.U.lualine.components.dap,
 						Mo.U.lualine.components.lsp,
@@ -158,36 +157,60 @@ local M = {
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-    -- stylua: ignore
-    keys = {
-      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-      { "<C-d>",
-        function()
-          if not require("noice.lsp").scroll(4) then
-            return "<C-d>"
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll down",
-        mode = { "i", "n", "s" },
-      },
-      {
-        "<C-u>",
-        function()
-          if not require("noice.lsp").scroll(-4) then
-            return "<C-u>"
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll up",
-        mode = { "i", "n", "s" },
-      },
-    },
+		keys = {
+			{
+				"<leader>nl",
+				function()
+					require("noice").cmd("last")
+				end,
+				desc = "Noice Last Message",
+			},
+			{
+				"<leader>nh",
+				function()
+					require("noice").cmd("history")
+				end,
+				desc = "Noice History",
+			},
+			{
+				"<leader>na",
+				function()
+					require("noice").cmd("all")
+				end,
+				desc = "Noice All",
+			},
+			{
+				"<leader>nd",
+				function()
+					require("noice").cmd("dismiss")
+				end,
+				desc = "Dismiss All",
+			},
+			{
+				"<C-d>",
+				function()
+					if not require("noice.lsp").scroll(4) then
+						return "<C-d>"
+					end
+				end,
+				silent = true,
+				expr = true,
+				desc = "Scroll down",
+				mode = { "i", "n", "s" },
+			},
+			{
+				"<C-u>",
+				function()
+					if not require("noice.lsp").scroll(-4) then
+						return "<C-u>"
+					end
+				end,
+				silent = true,
+				expr = true,
+				desc = "Scroll up",
+				mode = { "i", "n", "s" },
+			},
+		},
 		dependencies = {
 			{
 				"rcarriga/nvim-notify",
@@ -276,9 +299,6 @@ local M = {
 			},
 		},
 		config = function(_, opts)
-			-- if vim.o.filetype == "lazy" then
-			--   vim.cmd([[ message clear]])
-			-- end
 			require("noice").setup(opts)
 		end,
 	},

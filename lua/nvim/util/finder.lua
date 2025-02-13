@@ -46,7 +46,6 @@ function M.get_symbols(buf)
 	return M.symbols[ft] or M.symbols.defualt
 end
 
----https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
 ---@param scope "workspace" | "document"
 function M.lsp_symbols(scope)
 	return function()

@@ -58,7 +58,7 @@ local M = {
 				}),
 				formatting = {
 					format = lspkind.cmp_format({
-						maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+						maxwidth = 50,
 						ellipsis_char = "...",
 						show_labelDetails = true,
 						before = function(entry, vim_item)
@@ -70,10 +70,6 @@ local M = {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() and has_words_before() then
 							cmp.select_next_item({ behavior = select })
-						-- elseif vim.snippet.active({ direction = 1 }) then
-						--   vim.schedule(function()
-						--     vim.snippet.jump(1)
-						--   end)
 						elseif luasnip.locally_jumpable(1) then
 							luasnip.jump(1)
 						else
@@ -83,10 +79,6 @@ local M = {
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item({ behavior = select })
-						-- elseif vim.snippet.active({ direction = -1 }) then
-						--   vim.schedule(function()
-						--     vim.snippet.jump(-1)
-						--   end)
 						elseif luasnip.locally_jumpable(-1) then
 							luasnip.jump(-1)
 						else

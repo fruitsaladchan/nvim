@@ -17,7 +17,6 @@ return {
 			end)
 		end,
 		opts = {
-			-- Adding your config snippet here
 			config = function()
 				require("conform").setup({
 					format_on_save = {

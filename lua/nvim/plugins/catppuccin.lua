@@ -1,5 +1,4 @@
 local M = {
-	-- Catppuccin configuration
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -26,7 +25,7 @@ local M = {
 					noice = true,
 					notify = true,
 					neotest = true,
-					-- which_key = true,
+					which_key = true,
 					nvim_surround = true,
 					telescope = { style = Mo.C.transparent and nil or "nvchad" },
 				},
