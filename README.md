@@ -1,20 +1,20 @@
-# 🚀 Neovim Configuration
+# Nvim Configuration
 
 My Neovim configuration mostly for rust, python, go and c.
 
-## ✨ Features
+## Features
 
-- 🎨 UI with Catppuccin theme
-- 📝 LSP support with auto-completion
-- 🔍 Fuzzy finding with Telescope
-- 🌳 File explorer with Neo-tree
-- 🐛 Debugging support with DAP
-- ✅ Testing integration
-- 📊 Git integration
-- 🔧 Format & Lint support
-- 📦 Lazy loading for fast startup
+-  UI with Catppuccin theme
+-  LSP support with auto-completion
+-  Fuzzy finding with Telescope
+-  File explorer with Neo-tree
+-  Debugging support with DAP
+-  Testing integration
+-  Git integration
+-  Format & Lint support
+-  Lazy loading for fast startup
 
-## 🔧 Prerequisites
+##  Prerequisites
 
 - Neovim >= 0.9.0
 - Git
@@ -24,7 +24,7 @@ My Neovim configuration mostly for rust, python, go and c.
 - Node.js (for LSP servers)
 - fd (for fuzzy finding)
 
-## 📦 Installation
+##  Installation
 
 1. Backup your existing Neovim configuration:
 2. git clone https://github.com/fruitsaladchan/nvim.git ~/.config/nvim
