@@ -3,40 +3,29 @@ local keymap = vim.keymap.set
 --custom
 keymap("n", ";", ":", { noremap = true })
 keymap("n", "<S-w>", "b", { noremap = true, silent = true })
-
-keymap("n", "<leader>w", "<Cmd>wa<CR>", { desc = "Save files" })
 keymap("n", "zz", "<Cmd>q!<CR>", { desc = "Quit" })
-
---disable copy on delete (personal pref)
-vim.api.nvim_set_keymap("n", "dd", '"_dd', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "dw", '"_dw', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "cw", '"_cw', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "C", '"_C', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "D", '"_D', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "s", '"_s', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "p", ":set paste<CR>p:set nopaste<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "P", ":set paste<CR>P:set nopaste<CR>", { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "yy", "^vg_y", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "p", ":set paste<CR>p:set nopaste<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-S-v>", '<Esc>:set paste<CR>"+gP:set nopaste<CR>', { noremap = true, silent = true })
-
--- Motion
 keymap({ "n", "x" }, "<A-h>", "^", { desc = "To the first non-blank char of the line" })
 keymap({ "n", "x" }, "<A-l>", "$", { desc = "To the end of the line" })
--- Move line
-keymap("n", "<M-k>", "<Cmd>move .-2<CR>==", { desc = "Move up" })
-keymap("n", "<M-j>", "<Cmd>move .+1<CR>==", { desc = "Move down" })
+
+-- Editing: write
+keymap("n", "<leader>w", "<Cmd>w<CR>", { desc = "Save file" })
+keymap("n", "<leader>W", "<Cmd>wa<CR>", { desc = "Save files" })
+
+-- Editing: quit
+keymap("n", "<leader>q", "<Cmd>q<CR>", { desc = "Quit" })
+keymap("n", "<leader>Q", "<Cmd>q!<CR>", { desc = "Force quit" })
+
+-- Motion
+keymap("n", "<M-k>", "<Cmd>execute 'move .-' . (v:count1 + 1)<CR>==", { desc = "Move up" })
+keymap("n", "<M-j>", "<Cmd>execute 'move .+' . v:count1<CR>==", { desc = "Move down" })
 keymap("i", "<M-k>", "<Esc><Cmd>move .-2<CR>==gi", { desc = "Move up" })
 keymap("i", "<M-j>", "<Esc><Cmd>move .+1<CR>==gi", { desc = "Move down" })
-keymap("v", "<M-k>", ":move '<-2<cr>gv=gv", { noremap = true, silent = true, desc = "Move up" })
-keymap("v", "<M-j>", ":move '>+1<cr>gv=gv", { noremap = true, silent = true, desc = "Move down" })
+-- stylua: ignore 
+keymap("v", "<M-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv", { desc = "Move up" })
+keymap("v", "<M-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<CR>gv=gv", { desc = "Move down" })
 
 -- Split window
-keymap("n", "<leader>-", "<C-w>s", { desc = "Split below" })
+keymap("n", "<leader>_", "<C-w>s", { desc = "Split below" })
 keymap("n", "<leader>|", "<C-w>v", { desc = "Split right" })
 
 -- Move to window
@@ -51,7 +40,7 @@ keymap("n", "<A-Up>", "<Cmd>resize -2<CR>", { desc = "Decrease window height" })
 keymap("n", "<A-Left>", "<Cmd>vertical resize -2<CR>", { desc = "Increase window width" })
 keymap("n", "<A-Right>", "<Cmd>vertical resize +2<CR>", { desc = "Decrease window width" })
 
--- next results
+-- Saner behavior of n and N
 keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
 keymap("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 keymap("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
@@ -68,19 +57,17 @@ keymap({ "i", "n" }, "<esc>", "<Cmd>nohlsearch<CR><Esc>", { desc = "Escape and c
 -- Better up/down
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = "Move cursor up" })
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = "Move cursor down" })
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-	severity = severity and vim.diagnostic.severity[severity] or nil
-	return function()
-		go({ severity = severity })
-	end
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
 end
 keymap("n", "<leader>cd", function()
-	vim.diagnostic.open_float({ scope = "cursor", force = false })
+  vim.diagnostic.open_float({ scope = "cursor", force = false })
 end, { desc = "Line Diagnostic" })
 keymap("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 keymap("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
@@ -91,39 +78,17 @@ keymap("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 keymap("n", "<leader>pl", "<CMD>Lazy<CR>", { desc = "Lazy" })
 
--- terminal with bash
-keymap("n", "<leader>tt", function()
-	Mo.U.terminal({ "bash" })
-end, { desc = "terminal" })
-
-vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
-
---terminal with lzygit
-keymap("n", "<leader>gg", function()
-	Mo.U.terminal({ "lazygit" })
-end, { desc = "lazygit" })
+-- stylua: ignore start
+Mo.U.format.snacks_toggle():map("<leader>of")
+Mo.U.format.snacks_toggle(true):map("<leader>oF")
+Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>os")
+Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
+Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>oL")
+Snacks.toggle.line_number():map("<leader>ol")
+Snacks.toggle.treesitter():map("<leader>ot")
+Snacks.toggle.diagnostics():map("<leader>od")
+Snacks.toggle.inlay_hints():map("<leader>oh")
+Snacks.toggle.zen():map("<leader>oz")
 
 -- Code format
-keymap("n", "<leader>of", function()
-	Mo.U.format.toggle()
-end, { desc = "Toggle auto format(global)" })
-keymap({ "n", "v" }, "<leader>cf", function()
-	Mo.U.format.format({ force = true })
-end, { desc = "Code format" })
-
---options
-keymap("n", "<leader>oh", function()
-	Mo.U.toggle.inlay_hints()
-end, { desc = "Toggle Inlay Hints" })
-keymap("n", "<leader>os", function()
-	Mo.U.toggle("spell")
-end, { desc = "Toggle spelling" })
-vim.keymap.set("n", "<leader>on", function()
-	local current = vim.wo.number
-	vim.wo.number = not current
-	vim.wo.relativenumber = not current
-end, { desc = "Toggle line numbers" })
-
-keymap("n", "<leader>ow", function()
-	Mo.U.toggle("wrap")
-end, { desc = "Toggle word wrap" })
+keymap({ "n", "v" }, "<leader>cf", function() Mo.U.format.format({ force = true }) end, { desc = "Code format" })

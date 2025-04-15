@@ -2,11 +2,8 @@
 ---@field format nvim.util.format
 ---@field lsp nvim.util.lsp
 ---@field exporter nvim.util.exporter
----@field toggle nvim.util.toggle
 ---@field finder nvim.util.finder
----@field augroup nvim.util.augroup
 ---@field lualine nvim.util.lualine
----@field terminal nvim.util.terminal
 local M = {}
 
 setmetatable(M, {
@@ -16,14 +13,12 @@ setmetatable(M, {
   end,
 })
 
----Check if the plugin exists
----@param plugin string plugin name
+---@param plugin string
 ---@return boolean
 function M.has(plugin)
   return require("lazy.core.config").spec.plugins[plugin] ~= nil
 end
 
----Get the specified plugin opts
 ---@param name string plugin name
 ---@return table plugin_opts
 function M.opts(name)
@@ -45,7 +40,6 @@ function M.on_very_lazy(fn)
   })
 end
 
----Execute code when a plugin loads
 ---@param name string plugin name
 ---@param fn fun(name: string)
 function M.on_load(name, fn)

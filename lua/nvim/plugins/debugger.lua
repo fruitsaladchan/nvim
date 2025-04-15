@@ -85,9 +85,6 @@ local M = {
     )
   end,
   config = function()
-    -- load launch.json file
-    require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/.vscode/launch.json")
-
     local dap = require("dap")
     -- setup adapter
     dap.adapters.python = {
@@ -112,10 +109,9 @@ local M = {
     }
 
     -- https://github.com/rcarriga/nvim-dap-ui/issues/248
-    Mo.U.augroup("DapReplOptions", {
-      event = "BufWinEnter",
+    vim.api.nvim_create_autocmd("BufWinEnter", {
       pattern = { "\\[dap-repl\\]", "DAP *" },
-      command = vim.schedule_wrap(function(args)
+      callback = vim.schedule_wrap(function(args)
         local win = vim.fn.bufwinid(args.buf)
         vim.api.nvim_set_option_value("wrap", true, { win = win })
       end),
