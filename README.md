@@ -6,11 +6,9 @@ My Neovim configuration mostly for rust, python, go and c.
 
 -  UI with Catppuccin theme
 -  LSP support with auto-completion
--  Fuzzy finding with Telescope
--  File explorer with Neo-tree
+-  Fuzzy finding, File explorer, Dashboard, Lazygit, Notifications with snacks.nvim
 -  Debugging support with DAP
 -  Testing integration
--  Git integration
 -  Format & Lint support
 -  Lazy loading for fast startup
 
@@ -36,7 +34,7 @@ My Neovim configuration mostly for rust, python, go and c.
 - `<leader>pl` → Open Lazy
 - `<leader>pm` → Open Mason 
 - `<leader>tt` → Open terminal
-- `<C-n>` → Open neo-tree
+- `<C-n>` → Open explorer
 - `<leader>mp` → Markdown preview
 - `<leader>gg` → Open lazygit
 
@@ -47,17 +45,9 @@ My Neovim configuration mostly for rust, python, go and c.
 
 ### Code
 - `<leader>cd` → Show line diagnostics
-- `[d/]d` → Previous/next diagnostic
-- `[e/]e` → Previous/next error
-- `[w/]w` → Previous/next warning
 - `<leader>cf` → Format code (Code will also formart on save aswell)
-- `<C-a>` → Open aerial
+- `<leader>cs` → Open aerial
 
-### UI Toggles
-- `<leader>oh` → Toggle inlay hints
-- `<leader>os` → Toggle spell check
-- `<leader>on` → Toggle line numbers
-- `<leader>ow` → Toggle word wrap
 
 ### buffers
 - `<S-h>` → Left buffer
@@ -65,7 +55,7 @@ My Neovim configuration mostly for rust, python, go and c.
 
 ### notifications
 - `<leader>nd` → Dismiss all
-- `<leader>nd` → notification history
+- `<leader>nh` → notification history
 
 
 ### telescope
