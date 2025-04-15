@@ -25,7 +25,7 @@ My Neovim configuration mostly for rust, python, go and c.
 ##  Installation
 
 1. Backup your existing Neovim configuration:
-2. git clone https://github.com/fruitsaladchan/nvim.git ~/.config/nvim
+2. ```git clone https://github.com/fruitsaladchan/nvim.git ~/.config/nvim```
 3. nvim
 
 ## keybinds
